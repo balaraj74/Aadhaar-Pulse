@@ -116,33 +116,53 @@ Aadhaar Pulse/
 
 ### Prerequisites
 
-- Python 3.10+
-- Node.js 18+
-- npm or yarn
+- **Python** 3.10+ ([Download](https://python.org))
+- **Node.js** 18+ ([Download](https://nodejs.org))
+- **npm** or **yarn**
+- **Git**
 
-### 1. Clone & Setup Backend
+### 1. Clone the Repository
 
 ```bash
+git clone https://github.com/balaraj74/Aadhaar-Pulse.git
+cd Aadhaar-Pulse
+```
+
+### 2. Setup Backend (FastAPI)
+
+```bash
+# Navigate to API directory
 cd apps/api
 
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate        # Linux/macOS
+# OR
+venv\Scripts\activate           # Windows
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Configure environment (optional)
+# Configure environment
 cp .env.example .env
-# Edit .env to add your Data.gov.in API key
+# Edit .env and add your API keys:
+# - GEMINI_API_KEY (for AI insights)
+# - DATA_GOV_API_KEY (for data.gov.in)
 
-# Start API server
-uvicorn main:app --reload --port 8000
+# Start the API server
+python -m uvicorn main:app --reload --port 8000
 ```
 
-### 2. Setup Frontend
+The API will be running at **http://localhost:8000**
+
+### 3. Setup Frontend (Next.js)
+
+Open a **new terminal** and run:
 
 ```bash
+# Navigate to web directory
 cd apps/web
 
 # Install dependencies
@@ -152,11 +172,57 @@ npm install
 npm run dev
 ```
 
-### 3. Access the Application
+The frontend will be running at **http://localhost:3000**
 
-- **Dashboard**: http://localhost:3000
-- **API Docs**: http://127.0.0.1:8000/docs
-- **API Root**: http://127.0.0.1:8000
+### 4. Access the Application
+
+| Service | URL |
+|---------|-----|
+| **Dashboard** | http://localhost:3000 |
+| **API Documentation** | http://localhost:8000/docs |
+| **API Health Check** | http://localhost:8000/api/v1/overview |
+
+### 🔑 Environment Variables
+
+Create a `.env` file in `apps/api/` with the following:
+
+```env
+# Environment
+ENVIRONMENT=development
+DEBUG=true
+
+# Data.gov.in API (optional - uses simulated data if not set)
+DATA_GOV_API_KEY=your_data_gov_api_key
+
+# Gemini AI (required for AI insights)
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-2.5-flash
+
+# Cache Settings
+CACHE_TTL_SECONDS=300
+
+# Analytics Settings
+FORECAST_HORIZON_MONTHS=6
+ANOMALY_ZSCORE_THRESHOLD=2.5
+```
+
+### 🛑 Stopping the Servers
+
+- Press `Ctrl+C` in each terminal to stop the servers
+
+### 🔄 Running Both Servers Together
+
+For convenience, you can use two terminals:
+
+**Terminal 1 (API):**
+```bash
+cd apps/api && source venv/bin/activate && python -m uvicorn main:app --reload --port 8000
+```
+
+**Terminal 2 (Web):**
+```bash
+cd apps/web && npm run dev
+```
 
 ---
 
