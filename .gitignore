@@ -1,0 +1,35 @@
+# Environment files
+.env
+*.env.local
+.env.development
+.env.production
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Node.js
+node_modules/
+.next/
+.turbo/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Keep example files
+!.env.example
