@@ -44,7 +44,9 @@ class Settings(BaseSettings):
     CORS_ORIGINS: list = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "https://*.vercel.app",
+        "https://web-ashy-eight-32.vercel.app",
+        "https://web-naggelsi8-balaraj74s-projects.vercel.app",
+        "https://web-6z6zng1vn-balaraj74s-projects.vercel.app",
         "https://aadhaar-pulse.vercel.app",
         "https://aadhaar-pulse-web.vercel.app",
     ]
