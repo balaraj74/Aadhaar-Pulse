@@ -40,8 +40,14 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-2.5-flash"
     
-    # CORS
-    CORS_ORIGINS: list = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    # CORS - Allow Vercel deployments
+    CORS_ORIGINS: list = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://*.vercel.app",
+        "https://aadhaar-pulse.vercel.app",
+        "https://aadhaar-pulse-web.vercel.app",
+    ]
     
     class Config:
         env_file = ".env"
